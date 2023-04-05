@@ -1,0 +1,37 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+
+  background: linear-gradient(45deg, purple, blue);
+  color: #eee;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blockContainer {
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 1/1;
+
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+
+  font-size: 20px;
+}
+
+.block:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
