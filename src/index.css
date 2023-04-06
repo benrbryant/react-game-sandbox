@@ -1,3 +1,11 @@
+:root {
+  --dark: #211a1d;
+  --light: #cad5ca;
+  --accent-blue: #6320ee;
+  --accent-purple: #8075ff;
+  --white: #f8f0fb;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

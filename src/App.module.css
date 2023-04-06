@@ -2,8 +2,8 @@
   width: 100vw;
   height: 100vh;
 
-  background: linear-gradient(45deg, purple, blue);
-  color: #eee;
+  background-color: var(--dark);
+  color: var(--light);
 
   display: flex;
   justify-content: center;
@@ -28,10 +28,22 @@
   background-color: rgba(0, 0, 0, 0.2);
   border: 2px solid rgba(255, 255, 255, 0.2);
 
-  font-size: 20px;
+  font-size: 48px;
+
+  cursor: pointer;
 }
 
 .block:hover {
   background-color: rgba(0, 0, 0, 0.4);
   border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.isMatched {
+  animation: flash 1s;
+}
+
+@keyframes flash {
+  50% {
+    background-color: green;
+  }
 }
