@@ -1,36 +1,50 @@
 import { useState } from "react";
 import styles from "./App.module.css";
 
-const BLOCKS = new Array(16).fill(1);
-BLOCKS.forEach((num, idx, arr) => {
-  arr[idx] *= Math.round(Math.random() * (10 - 1) + 1);
-});
+// todo: add randomizer for array values
+function generateBlocks(number) {
+  let halfMark = number / 2;
 
-function Block({ value }) {
-  let [isBlurred, setIsBlurred] = useState(true);
+  if (halfMark % 2 !== 0)
+    throw new Error("generateBlocks must receive an even number");
 
-  function flashBlock(e) {
-    setIsBlurred(false);
+  let blocks = [];
+  for (let i = 0; i < number; i++) {
+    let block = { id: i, value: i + 1, isBlurred: true, isFound: false };
 
-    setTimeout(() => {
-      setIsBlurred(true);
-    }, 2000);
+    if (i >= halfMark) {
+      block.value -= halfMark;
+    }
+
+    blocks.push(block);
   }
+  return blocks;
+}
 
+function Block({ block, onClick }) {
   return (
-    <div className={styles.block} onClick={flashBlock}>
-      <p style={{ filter: isBlurred ? "blur(10px)" : "blur(0px)" }}>{value}</p>
+    <div className={styles.block} onClick={() => onClick(block)}>
+      <p style={{ filter: block.isBlurred ? "blur(10px)" : "blur(0px)" }}>
+        {block.value}
+      </p>
     </div>
   );
 }
 
 function Board() {
-  let [blocks, setBlocks] = useState(BLOCKS);
+  let [blocks, setBlocks] = useState(generateBlocks(16));
+  let [prevClick, setPrevClick] = useState(null);
+
+  function handleClick(block) {
+    if (prevClick == null) setPrevClick(block);
+
+    let clicked;
+  }
 
   return (
     <div className={styles.blockContainer}>
-      {blocks.map((value, idx) => (
-        <Block key={idx} value={value} />
+      {blocks.map((block) => (
+        <Block key={block.id} block={block} onClick={handleClick} />
       ))}
     </div>
   );
